@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (cartItems.length > 0) {
     const hiddenCartMenu = document.getElementById("hidden-cart-menu");
 
+    // Insert cart items to hidden cart menu
     const content = cartItems
       .map(
         cartItem => `
