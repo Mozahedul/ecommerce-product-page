@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <img src="./images/icon-delete.svg" alt="delete icon" />
           </button>
         </div>
-      </div>;
+      </div>
       `
       )
       .join("");
