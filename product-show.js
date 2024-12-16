@@ -23,7 +23,8 @@ const products = [
 
 // Load the product images when the page loads
 document.addEventListener("DOMContentLoaded", function () {
-  // Generate HTML code for product thumbnails and add event listeners to each thumbnail button
+  // Generate HTML code for product thumbnails
+  // and add event listeners to each thumbnail button
   let content = products
     .map(
       product => `

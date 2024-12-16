@@ -55,45 +55,13 @@
         <div class="avatar">
           <!-- Cart icon -->
           <button class="cart" id="cart-btn">
-            <span class="cart-badge">32</span>
+            <span class="cart-badge" id="cart-badge"></span>
             <img src="./images/icon-cart.svg" alt="Cart icon" />
           </button>
 
           <!-- Hidden cart items -->
           <div class="hidden-cart" id="hidden-cart-menu">
-            <h4>Cart</h4>
-            <div class="cart-item">
-              <img src="./images/image-product-1.jpg" alt="" />
-              <div class="cart-item-details">
-                <p class="hidden-cart-title">Fall Limited Edition Sneaker</p>
-                <p class="hidden-cart-price">
-                  $125 X 1 = <strong>$125.00</strong>
-                </p>
-              </div>
-              <div class="remove-btn">
-                <button>
-                  <img src="./images/icon-delete.svg" alt="delete icon" />
-                </button>
-              </div>
-            </div>
-            <div class="cart-item">
-              <img src="./images/image-product-1.jpg" alt="products photo" />
-              <div class="cart-item-details">
-                <p class="hidden-cart-title">Fall Limited Edition Sneaker</p>
-                <p class="hidden-cart-price">
-                  $125 X 1 = <strong>$125.00</strong>
-                </p>
-              </div>
-              <div class="remove-btn">
-                <button>
-                  <img src="./images/icon-delete.svg" alt="delete icon" />
-                </button>
-              </div>
-            </div>
-            <!-- checkout button -->
-            <div class="checkout-btn">
-              <button>Checkout</button>
-            </div>
+            <p class="cart-item cart-empty">Your cart is empty</p>
           </div>
 
           <div class="avatar-logo">
@@ -150,7 +118,7 @@
               </button>
             </div>
             <div class="cart-btn">
-              <button class="add-to-cart-btn">
+              <button class="add-to-cart-btn" id="add-to-cart-btn">
                 <img
                   src="./images/icon-cart.svg"
                   alt="Add to cart button"
@@ -167,7 +135,8 @@
         Challenge by
         <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
           >Frontend Mentor</a
-        >. Coded by <a href="#">Your Name Here</a>
+        >. Coded by <a href="#">Mozahedul Islma</a>. View Code @
+        <a href="#" target="_blank">GitHub Repo</a>
       </div>
     </div>
 
