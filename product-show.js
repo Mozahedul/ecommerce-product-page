@@ -43,11 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const largeImgBtn = document.querySelector("#img-lg");
   largeImgBtn.innerHTML = `
     <img 
-    src="${products[0].mainImg}" 
-    alt="${products[0].mainImg}" 
-    id="large-img" 
-    class="img-lg"
-    data-id="${products[0].id}"
+      src="${products[0].mainImg}" 
+      alt="${products[0].mainImg}" 
+      id="large-img" 
+      class="img-lg"
+      data-id="${products[0].id}"
     />
   `;
 
@@ -86,4 +86,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
-

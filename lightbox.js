@@ -1,9 +1,5 @@
 const closeIconLightBox = document.getElementById("close-icon-lightbox");
 
-// closeIconLightBox.addEventListener("click", function () {
-
-// });
-
 // Show lightbox
 const lgImgBtn = document.getElementById("img-lg");
 lgImgBtn.addEventListener("click", function () {
@@ -13,6 +9,13 @@ lgImgBtn.addEventListener("click", function () {
   // show lightbox overlay bg
   const overlayLightbox = document.getElementById("overlay-lightbox");
   overlayLightbox.classList.add("open");
+
+  // Set the active thumbnail with border for lightbox
+  // const thumbnailsCollection = document.getElementById("thumbnail-btn");
+  // const thumbnailBtns = Array.from(thumbnailsCollection);
+  // if (thumbnailBtns) {
+  //   thumbnailBtns[0].style.border = "2px solid red";
+  // }
 });
 
 // Close lightbox
@@ -53,9 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   // show large image of lightbox
-  const lightBoxLayout = document.getElementById("lightbox-img-wrapper");
+  const lightImgWrapper = document.getElementById("lightbox-img-wrapper");
 
-  if (lightBoxLayout) {
+  if (lightImgWrapper) {
     let lightboxLargeContent = products
       .map(
         product => `<img src="${product.mainImg}" alt="${product.mainImg}"      class="lightbox-main-img"
@@ -64,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       )
       .join("");
 
-    lightBoxLayout.innerHTML = lightboxLargeContent;
+    lightImgWrapper.innerHTML = lightboxLargeContent;
   }
 
   // Generate HTML code for product thumbnails
@@ -75,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let content = products
       .map(
         product =>
-          `<button class="thumbnail-btn" data-id="${product.id}">
+          `<button class="thumbnail-btn thumb-btn" data-id="${product.id}">
             <img src="${product.thumbnail}" alt="${product.thumbnail}"/>
           </button>`
       )
@@ -84,30 +87,98 @@ document.addEventListener("DOMContentLoaded", function () {
     thumbnailsContainer.innerHTML = content;
   }
 
-  // slider setting
   let scrollPosition = 0;
+
+  // Functionalities with thumbnail buttons
+  // set the active thumbnail button with the specified large image
+  const thumbnailBtnsCollection =
+    document.getElementsByClassName("thumbnail-btn");
+  const thumbBtnsArray = Array.from(thumbnailBtnsCollection);
+
+  if (scrollPosition === 0) {
+    thumbBtnsArray[0].querySelector("img").style.border = "2px solid green";
+  }
+
+  // slider setting
   const slider = document.getElementById("lightbox-img-wrapper");
 
   const prevSliderBtn = document.getElementById("prev-slide-btn");
   const nextSliderBtn = document.getElementById("next-slide-btn");
+  // At initial state, the first thumbnail will remain selected with border
+  thumbBtnsArray.map(btn => {
+    btn.addEventListener("click", function () {
+      // Remove border from all thumbnails images
+      thumbBtnsArray.forEach(thumbBtn => {
+        thumbBtn.querySelector("img").style.border = "none";
+      });
 
-  // if (scrollPosition < slider.offsetWidth) {
-  //   prevSliderBtn.disabled = true;
-  //   prevSliderBtn.style.cursor = "not-allowed";
-  // }
+      // Add border to the selected thumbnail image
+      this.querySelector("img").style.border = "2px solid hsl(26, 100%, 55%)";
+      const lightboxSlider = document.getElementById("lightbox-img-wrapper");
+
+      scrollPosition =
+        lightboxSlider.offsetWidth * this.dataset.id -
+        lightboxSlider.offsetWidth;
+
+      // Enable or disable the next slider and prev slider button
+      if (scrollPosition >= slider.scrollWidth - slider.offsetWidth) {
+        nextSliderBtn.disabled = true;
+        nextSliderBtn.style.cursor = "not-allowed";
+      }
+
+      if (scrollPosition >= slider.offsetWidth) {
+        prevSliderBtn.disabled = false;
+        prevSliderBtn.style.cursor = "pointer";
+      }
+
+      if (scrollPosition <= slider.scrollWidth - slider.offsetWidth) {
+        nextSliderBtn.disabled = false;
+        nextSliderBtn.style.cursor = "pointer";
+      }
+
+      if (scrollPosition < slider.offsetWidth) {
+        prevSliderBtn.disabled = true;
+        prevSliderBtn.style.cursor = "not-allowed";
+      }
+
+      lightboxSlider.scrollTo({
+        top: "0",
+        left: scrollPosition,
+        behavior: "smooth",
+      });
+    });
+  });
 
   // for previous slider
   prevSliderBtn.addEventListener("click", function () {
     if (scrollPosition >= slider.offsetWidth) {
       scrollPosition -= slider.offsetWidth;
     }
+
+    // select the slider thumbnail according to
+    // next or previous slider buttons clicking
+    const slideNumber = scrollPosition / slider.offsetWidth;
+    const thumbnailButtons = Array.from(
+      document.getElementsByClassName("thumb-btn")
+    );
+
+    thumbnailButtons.forEach(btn => {
+      btn.querySelector("img").style.border = "none";
+    });
+
+    thumbnailButtons[slideNumber].querySelector("img").style.border =
+      "2px solid hsl(26, 100%, 55%)";
+
     console.log("scrollposition: prev slider" + scrollPosition);
 
+    // disable the previous slider button when it reaches to the first slide
     if (scrollPosition < slider.offsetWidth) {
       prevSliderBtn.disabled = true;
       prevSliderBtn.style.cursor = "not-allowed";
     }
 
+    // Enable the next slider button when previous slider button is
+    // clicked during the slide goes last state
     if (scrollPosition <= slider.scrollWidth - slider.offsetWidth) {
       nextSliderBtn.disabled = false;
       nextSliderBtn.style.cursor = "pointer";
@@ -121,17 +192,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // for next slider
-
   nextSliderBtn.addEventListener("click", function () {
     scrollPosition += slider.offsetWidth;
 
-    console.log("scroll position: Next slider " + scrollPosition);
+    // select the slider thumbnail according to
+    // next slider buttons clicking
+    const slideNumber = scrollPosition / slider.offsetWidth;
+    const thumbnailButtons = Array.from(
+      document.getElementsByClassName("thumb-btn")
+    );
 
+    thumbnailButtons.forEach(btn => {
+      btn.querySelector("img").style.border = "none";
+    });
+
+    thumbnailButtons[slideNumber].querySelector("img").style.border =
+      "2px solid hsl(26, 100%, 55%)";
+
+    // disable the next slider button when it reaches to last slide
     if (scrollPosition >= slider.scrollWidth - slider.offsetWidth) {
       nextSliderBtn.disabled = true;
       nextSliderBtn.style.cursor = "not-allowed";
     }
 
+    // Enable the previous slider button when next slider button
+    // is clicked for the first time
     if (scrollPosition >= slider.offsetWidth) {
       prevSliderBtn.disabled = false;
       prevSliderBtn.style.cursor = "pointer";
