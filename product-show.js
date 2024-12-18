@@ -39,6 +39,18 @@ document.addEventListener("DOMContentLoaded", function () {
     .join("");
   document.getElementById("imgList").innerHTML = content;
 
+  // set large image at initial page load
+  const largeImgBtn = document.querySelector("#img-lg");
+  largeImgBtn.innerHTML = `
+    <img 
+    src="${products[0].mainImg}" 
+    alt="${products[0].mainImg}" 
+    id="large-img" 
+    class="img-lg"
+    data-id="${products[0].id}"
+    />
+  `;
+
   // Return a live HTMLColection that is really an iterable object
   // Get all thumbnails btns with image
   const buttons = document.getElementsByClassName("thumbnail-btn");
@@ -70,8 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (selectProduct) {
       const largeImg = document.getElementById("large-img");
       largeImg.src = selectProduct.mainImg;
+      largeImg.setAttribute("data-id", id);
     }
-
-    // Now set the selected thumbnail image active with border
   }
 });
+

@@ -73,13 +73,7 @@
       <main class="product-details">
         <!-- Left seciton with product images -->
         <div class="product-img" id="product-details-left">
-          <div class="img-lg">
-            <img
-              src="./images/image-product-1.jpg"
-              alt="products 1"
-              id="large-img"
-            />
-          </div>
+          <button class="img-lg" id="img-lg"></button>
           <!-- Thumbnail images have shown with JS -->
           <div class="img-list" id="imgList"></div>
         </div>
@@ -129,6 +123,45 @@
             </div>
           </div>
         </div>
+
+        <!-- Lightbox setup -->
+        <div class="overlay-lightbox" id="overlay-lightbox"></div>
+        <div class="lightbox" id="lightbox">
+          <div class="close-icon">
+            <button class="close-icon-btn" id="close-icon-lightbox">
+              <img src="./images/icon-close.svg" alt="close icon" />
+            </button>
+          </div>
+          <div class="lightbox-img-container">
+            <button class="slide prev-slide" id="prev-slide-btn">
+              <img src="./images/icon-previous.svg" alt="icon previous" />
+            </button>
+            <button class="slide next-slide" id="next-slide-btn">
+              <img src="./images/icon-next.svg" alt="icon previous" />
+            </button>
+            <!-- Large image -->
+            <div class="lightbox-lg-layout" id="lightbox-lg-layout">
+              <div class="lightbox-img-wrapper" id="lightbox-img-wrapper">
+                <!-- Images will be dynamically loaded here -->
+              </div>
+            </div>
+          </div>
+
+          <div class="thumbnails" id="thumbnails">
+            <!-- <button class="thumbnail-btn">
+              <img src="./images/image-product-1-thumbnail.jpg" alt="" />
+            </button>
+            <button class="thumbnail-btn">
+              <img src="./images/image-product-2-thumbnail.jpg" alt="" />
+            </button>
+            <button class="thumbnail-btn">
+              <img src="./images/image-product-3-thumbnail.jpg" alt="" />
+            </button>
+            <button class="thumbnail-btn">
+              <img src="./images/image-product-4-thumbnail.jpg" alt="" />
+            </button> -->
+          </div>
+        </div>
       </main>
 
       <div class="attribution">
@@ -146,5 +179,6 @@
     <script src="./navigation.js"></script>
     <script src="./cart.js"></script>
     <script src="./product-show.js"></script>
+    <script src="./lightbox.js"></script>
   </body>
 </html>
