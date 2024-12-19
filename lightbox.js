@@ -89,22 +89,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let scrollPosition = 0;
 
-  // Functionalities with thumbnail buttons
-  // set the active thumbnail button with the specified large image
-  const thumbnailBtnsCollection =
-    document.getElementsByClassName("thumbnail-btn");
-  const thumbBtnsArray = Array.from(thumbnailBtnsCollection);
-
-  if (scrollPosition === 0) {
-    thumbBtnsArray[0].querySelector("img").style.border = "2px solid green";
-  }
-
   // slider setting
   const slider = document.getElementById("lightbox-img-wrapper");
 
   const prevSliderBtn = document.getElementById("prev-slide-btn");
   const nextSliderBtn = document.getElementById("next-slide-btn");
-  // At initial state, the first thumbnail will remain selected with border
+
+  // SLIDES THE LARGE IMAGE OF LIGHTBOX WITH BY CLICKING THE THUMBNAIL
+  const thumbnailBtnsCollection = document.getElementsByClassName("thumb-btn");
+  const thumbBtnsArray = Array.from(thumbnailBtnsCollection);
+
+  // When lightbox is opened, then the first thumbnail will
+  // remain selected with border
+  if (scrollPosition === 0) {
+    thumbBtnsArray[0].querySelector("img").style.border =
+      "2px solid hsl(26, 100%, 55%)";
+    prevSliderBtn.style.cursor = "not-allowed";
+    prevSliderBtn.disabled = true;
+  }
   thumbBtnsArray.map(btn => {
     btn.addEventListener("click", function () {
       // Remove border from all thumbnails images
@@ -116,22 +118,38 @@ document.addEventListener("DOMContentLoaded", function () {
       this.querySelector("img").style.border = "2px solid hsl(26, 100%, 55%)";
       const lightboxSlider = document.getElementById("lightbox-img-wrapper");
 
-      scrollPosition =
-        lightboxSlider.offsetWidth * this.dataset.id -
-        lightboxSlider.offsetWidth;
+      scrollPosition = lightboxSlider.offsetWidth * (this.dataset.id - 1);
+
+      console.log("scrollPosition: " + scrollPosition);
+      console.log("scrollPosition id: " + this.dataset.id);
 
       // Enable or disable the next slider and prev slider button
-      if (scrollPosition >= slider.scrollWidth - slider.offsetWidth) {
-        nextSliderBtn.disabled = true;
-        nextSliderBtn.style.cursor = "not-allowed";
-      }
+      // if (scrollPosition >= slider.scrollWidth - slider.offsetWidth) {
+      //   nextSliderBtn.disabled = true;
+      //   nextSliderBtn.style.cursor = "not-allowed";
+      // }
 
-      if (scrollPosition >= slider.offsetWidth) {
+      // if (scrollPosition >= slider.offsetWidth) {
+      //   prevSliderBtn.disabled = false;
+      //   prevSliderBtn.style.cursor = "pointer";
+      // }
+
+      // if (scrollPosition <= slider.scrollWidth - slider.offsetWidth) {
+      //   nextSliderBtn.disabled = false;
+      //   nextSliderBtn.style.cursor = "pointer";
+      // }
+
+      // if (scrollPosition < slider.offsetWidth) {
+      //   prevSliderBtn.disabled = true;
+      //   prevSliderBtn.style.cursor = "not-allowed";
+      // }
+
+      if (
+        scrollPosition >= slider.offsetWidth &&
+        scrollPosition <= slider.scrollWidth - slider.offsetWidth
+      ) {
         prevSliderBtn.disabled = false;
         prevSliderBtn.style.cursor = "pointer";
-      }
-
-      if (scrollPosition <= slider.scrollWidth - slider.offsetWidth) {
         nextSliderBtn.disabled = false;
         nextSliderBtn.style.cursor = "pointer";
       }
@@ -141,19 +159,26 @@ document.addEventListener("DOMContentLoaded", function () {
         prevSliderBtn.style.cursor = "not-allowed";
       }
 
+      if (scrollPosition >= slider.scrollWidth - slider.offsetWidth) {
+        nextSliderBtn.disabled = true;
+        nextSliderBtn.style.cursor = "not-allowed";
+      }
+
       lightboxSlider.scrollTo({
         top: "0",
-        left: scrollPosition,
+        left: scrollPosition - lightboxSlider.offsetWidth,
         behavior: "smooth",
       });
     });
   });
 
-  // for previous slider
+  // ===== FOR PREVIOUS SLIDER ======
   prevSliderBtn.addEventListener("click", function () {
     if (scrollPosition >= slider.offsetWidth) {
       scrollPosition -= slider.offsetWidth;
     }
+
+    console.log("scroll position prev => ", scrollPosition);
 
     // select the slider thumbnail according to
     // next or previous slider buttons clicking
@@ -191,9 +216,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // for next slider
+  // ===== FOR NEXT SLIDER ======
   nextSliderBtn.addEventListener("click", function () {
     scrollPosition += slider.offsetWidth;
+
+    console.log("scroll position => ", scrollPosition);
 
     // select the slider thumbnail according to
     // next slider buttons clicking
