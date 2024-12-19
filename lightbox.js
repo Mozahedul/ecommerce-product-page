@@ -121,30 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       scrollPosition = lightboxSlider.offsetWidth * (this.dataset.id - 1);
 
-      console.log("scrollPosition: " + scrollPosition);
-      console.log("scrollPosition id: " + this.dataset.id);
-
-      // Enable or disable the next slider and prev slider button
-      // if (scrollPosition >= slider.scrollWidth - slider.offsetWidth) {
-      //   nextSliderBtn.disabled = true;
-      //   nextSliderBtn.style.cursor = "not-allowed";
-      // }
-
-      // if (scrollPosition >= slider.offsetWidth) {
-      //   prevSliderBtn.disabled = false;
-      //   prevSliderBtn.style.cursor = "pointer";
-      // }
-
-      // if (scrollPosition <= slider.scrollWidth - slider.offsetWidth) {
-      //   nextSliderBtn.disabled = false;
-      //   nextSliderBtn.style.cursor = "pointer";
-      // }
-
-      // if (scrollPosition < slider.offsetWidth) {
-      //   prevSliderBtn.disabled = true;
-      //   prevSliderBtn.style.cursor = "not-allowed";
-      // }
-
       if (
         scrollPosition >= slider.offsetWidth &&
         scrollPosition <= slider.scrollWidth - slider.offsetWidth
