@@ -438,6 +438,11 @@ html {
   grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
 }
 
+.plus-minus-btns label {
+  display: flex;
+  justify-content: center;
+}
+
 .plus-minus-btns button {
   cursor: pointer;
 }

@@ -99,14 +99,17 @@
               <button title="Decrement" class="decrement" id="decrement">
                 <img src="./images/icon-minus.svg" alt="minus icon" />
               </button>
-              <input
-                type="number"
-                class="cart-number"
-                id="input-cart"
-                value="1"
-                min="1"
-                max="100"
-              />
+              <label for="number">
+                <input
+                  type="number"
+                  class="cart-number"
+                  id="input-cart"
+                  value="1"
+                  min="1"
+                  max="100"
+                  aria-label="cart"
+                />
+              </label>
               <button title="Increment" class="increment" id="increment">
                 <img src="./images/icon-plus.svg" alt="plus icon" />
               </button>
@@ -147,24 +150,11 @@
             </div>
           </div>
 
-          <div class="thumbnails" id="thumbnails">
-            <!-- <button class="thumbnail-btn">
-              <img src="./images/image-product-1-thumbnail.jpg" alt="" />
-            </button>
-            <button class="thumbnail-btn">
-              <img src="./images/image-product-2-thumbnail.jpg" alt="" />
-            </button>
-            <button class="thumbnail-btn">
-              <img src="./images/image-product-3-thumbnail.jpg" alt="" />
-            </button>
-            <button class="thumbnail-btn">
-              <img src="./images/image-product-4-thumbnail.jpg" alt="" />
-            </button> -->
-          </div>
+          <div class="thumbnails" id="thumbnails"></div>
         </div>
       </main>
 
-      <div class="attribution">
+      <footer class="attribution">
         Challenge by
         <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
           Frontend Mentor
@@ -173,7 +163,7 @@
         <a target="_blank" href="https://portfolio-mozahedul.vercel.app/">
           Mozahedul Islam
         </a>
-      </div>
+      </footer>
     </div>
 
     <script src="./navigation.js"></script>

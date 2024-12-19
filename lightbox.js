@@ -61,9 +61,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (lightImgWrapper) {
     let lightboxLargeContent = products
       .map(
-        product => `<img src="${product.mainImg}" alt="${product.mainImg}"      class="lightbox-main-img"
-         id="lightbox-lg-img"
-       />`
+        product => `
+        <img 
+          src="${product.mainImg}" 
+          alt="${product.mainImg}"      class="lightbox-main-img"
+          />
+       `
       )
       .join("");
 
