@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextSliderBtn = document.getElementById("next-slide-btn");
 
   // SLIDES THE LARGE IMAGE OF LIGHTBOX WITH BY CLICKING THE THUMBNAIL
+
   const thumbnailBtnsCollection = document.getElementsByClassName("thumb-btn");
   const thumbBtnsArray = Array.from(thumbnailBtnsCollection);
 
@@ -166,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       lightboxSlider.scrollTo({
         top: "0",
-        left: scrollPosition - lightboxSlider.offsetWidth,
+        left: scrollPosition,
         behavior: "smooth",
       });
     });
